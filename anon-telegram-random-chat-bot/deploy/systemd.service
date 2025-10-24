@@ -1,0 +1,19 @@
+[Unit]
+Description=Anonymous Telegram Random Chat Bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=bot
+Group=bot
+WorkingDirectory=/opt/anon-telegram-random-chat-bot
+EnvironmentFile=/opt/anon-telegram-random-chat-bot/.env
+ExecStart=/opt/anon-telegram-random-chat-bot/.venv/bin/python -m app.main
+Restart=on-failure
+RestartSec=5
+KillSignal=SIGINT
+TimeoutStopSec=20
+
+[Install]
+WantedBy=multi-user.target
